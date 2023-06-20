@@ -3,6 +3,7 @@
   <head>
     <title>Bookers2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <script src="https://kit.fontawesome.com/48c5a50ddf.js" crossorigin="anonymous"></script> 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,19 +13,98 @@
 
   <body>
      <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <div class="container">
+           <a class="navbar-brand" href="/"><span>Bookers</span></a>
+           
+           <button class="navbar-toggler" type="button" data-toggle="collapse"
+           data-target="navbarNavDropdowu" aria-controls="navbarNavDropdowu"
+           aria-expanded="false" aria-label="Toggle navbargation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+           
+           <div class="collapse navbar-collapse" id="navbarNavDropdowu">
+             
+              
+             <ul class="navbar-nav ml-auto">
+               <% if user_signed_in? %>
+               <li class="nav-item">
+               <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fas fa-home"></i>
+                  Home
+                <% end %>
+              </li>
+              
+             <li class="nav-item">
+               <%= link_to users_path, class: "nav-link text-light" do %>
+                <i class="fas fa-users"></i>
+                Users
+               <% end %>
+             </li>
+             
+              <li class="nav-item">
+               <%= link_to books_path, class: "nav-link text-light" do %>
+               <i class="fas fa-book-open"></i>
+                Books
+               <% end %>
+             </li>
+             
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+              <i class="fas fa-sign-out-alt"></i>
+             Log out
+             <% end %>
+            </li>
+            
+              <% else %>
+              
+              <li class="nav-item">
+               <%= link_to root_path, class: "nav-link text-light" do %>
+                <i class="fas fa-home"></i>
+                  Home
+                <% end %>
+              </li>
+               
+              <li class="nav-item">
+               <%= link_to about_path, class: "nav-link text-light" do %>
+               <i class="fas fa-link"></i>
+                About
+               <% end %>
+              </li>
+              
+               <li class="nav-item">
+               <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+                <i class="fas fa-user-plus"></i>
+                 Sign up
+                 <% end %>
+               </li>
+               
+               <li class="nav-item">
+                <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                 <i class="fas fa-sign-in-alt"></i>
+                 Log in
+                <% end %>
+              </li>
+               <% end %>
+           </div>
+         </div>
+       </nav>
   </header>
-    <%= yield %>
+  
+  <main class="mb-auto">
+      <%= yield %>
+  </main>
+  
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="mx-auto">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+   
   </body>
 </html>
+ 
