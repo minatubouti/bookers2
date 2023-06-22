@@ -15,9 +15,10 @@
         <div class="form-group">
           <%= f.submit 'Update Book', class: 'btn btn-success', data: { disable_with: 'Create Book' } %>
         </div>
-         <%= link_to "show" book_path(@book) %>
+        
+         <%= link_to "show", book_path(@book) %>
          |
-         <%= link_to "Back" books_path %>
+         <%= link_to "Back", books_path %>
       <% end %>
        
       </div>
