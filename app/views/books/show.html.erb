@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
  <p id="notice"></p>
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -9,17 +13,17 @@
     <h2>Book detail</h2>
     <table class="table">
         <tbody>
-            <tr>
-               <% @book.each do |book| %>
-              <td><%= image_tag book.user.get_profile_image(100,100) %></td>
-              <td><%= link_to book.title, user_path(id: book.user.id) %></td>
-              <td><%= book.body %></td>
-              <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-              <td><%= link_to "Destroy", destroy_book_path(@book.id), mehod: :delete, "data-confirm" => "本当に消しますか" %></td>
-              <% end %>
-            </tr>
-        </tbody>
+         <tr>
+          <td><%= image_tag @book.user.get_profile_image(100,100) %><p><%= link_to @user.name, user_path(id: @book.user.id) %></p></td>
+          <td><%= link_to @book.title, user_path(id: @book.user.id) %></td>
+          <td><%= @book.body %></td>
+          <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
+          <% if @book.user == current_user %>
+          <td><%= link_to "Destroy", book_path(@book.id), method: :delete, data: { confirm: "本当に消しますか" }, class: "btn btn-sm btn-danger" %></td>
+          <% end %>
+         </tr>
+       </tbody>
+ 
     </table>
   </div>
  </div>
-</div>
